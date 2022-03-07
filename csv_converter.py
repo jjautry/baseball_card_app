@@ -20,6 +20,3 @@ def get_set(year, maker, line, set):
                 baseball_data_dict[card]['set'] == set:
             set_list.append(card)
     return set_list
-
-redux_1952 = get_set(2021, 'Topps', 'Series 1', 'Topps 1952 Redux')
-

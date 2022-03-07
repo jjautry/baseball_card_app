@@ -1,1 +1,3 @@
-app_id,quantity,variation
+app_id,quantity,variation,date_entered
+2029,1,,2022-03-07
+950,1,,2022-03-07
