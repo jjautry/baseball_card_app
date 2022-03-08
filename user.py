@@ -47,3 +47,36 @@ def add_card_test():
             pass
     else:
         print("Card not found in 'Database'")
+
+class Card:
+    """Class for card that user entered"""
+    def __init__(self, year, brand, line, set, card_id):
+        self.year = year
+        self.maker = brand
+        self.line = line
+        self.set = set
+        self.card_id = card_id
+        self.player = None
+        self.team = None
+        self.app_id = None
+        self.quantity = None
+        self.variation = None
+
+    def find_in_data(self):
+        id = search_dict4card(self.year, self.maker, self.line, self.set, self.card_id)
+        if id:
+            self.player = baseball_data_dict[int(id)]['player']
+            self.team = baseball_data_dict[int(id)]['team']
+            self.app_id = id
+            print(f"""
+            Card found, {self.player}
+            \n to add it to your collection please call .add_to_user()
+            """)
+        else:
+            print("CARD NOT FOUND")
+
+    def add_to_user(self):
+        if self.app_id:
+            add_new_card(self.app_id, self.variation)
+        else:
+            print("Can't add to data - No id assigned, call .find_in_data()")
