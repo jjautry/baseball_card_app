@@ -31,23 +31,6 @@ def search_dict4card(year, maker, line, set, card_number):
             pass
 
 
-def add_card_test():
-    input_year = input("Year: \n")
-    input_maker = input("Card Brand: \n")
-    input_line = input("Brand Line: \n")
-    input_set = input("Specific set or Base: \n")
-    input_id = input("# on top-back of card: \n")
-    if search_dict4card(input_year, input_maker, input_line, input_set, input_id):
-        new_card_id = int(search_dict4card(input_year, input_maker, input_line, input_set, input_id))
-        variation = input("Is this card a variation, if so what is it? EX: 'Gold' \nClick ENTER if no:")
-        agreement = input(f"Are you sure you want to input {baseball_data_dict[new_card_id]['player']}? y/n :\n")
-        if agreement == 'y':
-            add_new_card(new_card_id, variation)
-        else:
-            pass
-    else:
-        print("Card not found in 'Database'")
-
 class Card:
     """Class for card that user entered"""
     def __init__(self, year, brand, line, set, card_id):
@@ -77,6 +60,30 @@ class Card:
 
     def add_to_user(self):
         if self.app_id:
+            self.quantity = 1
             add_new_card(self.app_id, self.variation)
         else:
             print("Can't add to data - No id assigned, call .find_in_data()")
+    
+
+
+class Set:
+
+    def __init__(self, year, maker, line, set):
+        self.year = year
+        self.maker = maker
+        self.line = line
+        self.set = set
+
+    def show_set(self):
+        set = []
+        for key, value in baseball_data_dict.items():
+            if value['year'] == str(self.year) and \
+                    value['maker'] == self.maker and \
+                    value['line'] == self.line and \
+                    value['set'] == self.set:
+                    app_id = (int(value['app_id']))
+                    set.append(baseball_data_dict[app_id]['player'])
+            else:
+                pass
+        return set
