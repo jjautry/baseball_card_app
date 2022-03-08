@@ -1,6 +1,5 @@
-import csv
 import pandas as pd
-from csv_converter import baseball_data_dict, get_set
+from csv_converter import baseball_data_dict
 from datetime import datetime
 
 
@@ -17,6 +16,7 @@ def add_new_card(app_id, variation=None):
     df = pd.DataFrame(data)
     df.to_csv('data/user_data.csv', mode='a', index=False, header=False)
     print('Card added successfully!')
+
 
 def search_dict4card(year, maker, line, set, card_number):
     """Searches dict for card and returns False if not found, the app_id for card if found"""
@@ -47,6 +47,3 @@ def add_card_test():
             pass
     else:
         print("Card not found in 'Database'")
-
-
-
